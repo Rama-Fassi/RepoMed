@@ -36,18 +36,15 @@ class _AddMedicineViewState extends State<AddMedicineView> {
       builder: (context, state) => BlurryModalProgressHUD(
         inAsyncCall: isLoading,
         child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: kPrimaryColor,
-            centerTitle: true,
-            title: Text(
-              'RepoMed',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.bold),
-            ),
+          body: Row(
+            children: [
+              Expanded(flex: 1, child: LeftSlideContainer()),
+              Expanded(
+                flex: 5,
+                child: AddMedicineViewBody(),
+              ),
+            ],
           ),
-          body: AddMedicineViewBody(),
         ),
       ),
     );

@@ -6,7 +6,7 @@ const kTextFieldBorder = OutlineInputBorder(
   ),
 );
 
-const kSizedBox = SizedBox(height: 20.0);
+const kSizedBox = SizedBox(height: 25);
 
 const kColor1 = Color(0xff5CC3EC);
 const kColor2 = Color(0xff79CBEC);

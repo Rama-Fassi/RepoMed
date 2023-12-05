@@ -20,10 +20,10 @@ class CustomCardForGetStart extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(10),
         ),
-        width: 300,
-        height: 350,
+        width: 220,
+        height: 270,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -39,7 +39,7 @@ class CustomCardForGetStart extends StatelessWidget {
             Expanded(
               child: Text(
                 text,
-                style: TextStyle(fontSize: 40, color: kPrimaryColor),
+                style: TextStyle(fontSize: 30, color: kPrimaryColor),
               ),
             ),
           ],

@@ -10,7 +10,8 @@ import 'package:repomed/widgets/custome_card.dart';
 import 'package:repomed/widgets/textFiledPickedDate.dart';
 
 import 'Views/add_medicine_view.dart';
-import 'Views/details_view.dart';
+import 'Views/medicine_details_view.dart';
+import 'widgets/details_table.dart';
 import 'Views/home_view.dart';
 import 'Views/login_view.dart';
 import 'Views/all_medicine_view.dart';
@@ -42,7 +43,16 @@ class RepoMedApp extends StatelessWidget {
         },
         debugShowCheckedModeBanner: false,
         title: 'RepoMed',
-        home: HomeView(),
+        initialRoute: LoginView.id,
+        // home: MedicineDetailPage(
+        //   medicine: Medicine2(
+        //     name: 'Paracetamol',
+        //     tradeName: 'Panadol',
+        //     category: 'Pain Relief',
+        //     imageUrl:
+        //         'assets/images/img_1.png', // Replace with actual image URL
+        //   ),
+        // ),
       ),
     );
   }

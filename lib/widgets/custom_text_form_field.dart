@@ -25,7 +25,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      cursorColor: kColor1,
+      cursorColor: kPrimaryColor,
       keyboardType: inputType,
       onChanged: onChanged,
       onTap: onTap,
@@ -46,7 +46,7 @@ class CustomTextFormField extends StatelessWidget {
         labelText: labelText,
         alignLabelWithHint: true,
         labelStyle:
-            const TextStyle(color: kColor4, fontWeight: FontWeight.bold),
+            const TextStyle(color: kLogoColor1, fontWeight: FontWeight.bold),
         hintText: hint,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),

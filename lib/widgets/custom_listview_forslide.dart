@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:repomed/Views/add_medicine_view.dart';
+import 'package:repomed/Views/all_medicine_view.dart';
+import 'package:repomed/Views/get_started.dart';
 
 class CustomListViewforSlide extends StatelessWidget {
   const CustomListViewforSlide({
@@ -11,17 +14,25 @@ class CustomListViewforSlide extends StatelessWidget {
       padding: EdgeInsets.zero,
       children: <Widget>[
         SizedBox(
-          height: 30,
+          height: 10,
         ),
         Center(
-          child: Text(
-            'RepoMed',
-            style: TextStyle(
-                color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 12),
+            child: Text(
+              'RepoMed',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
         ),
-        SizedBox(height: 100),
+        SizedBox(height: 80),
         ListTile(
+          onTap: () {
+            Navigator.pushNamed(context, GetStarted.id);
+          },
           leading: Icon(
             Icons.home,
             color: Colors.white,
@@ -36,6 +47,20 @@ class CustomListViewforSlide extends StatelessWidget {
         SizedBox(height: 15),
         ListTile(
           leading: Icon(
+            Icons.add_shopping_cart,
+            color: Colors.white,
+          ),
+          title: Text(
+            'Add Medicine',
+            style: TextStyle(color: Colors.white),
+          ),
+          onTap: () {
+            Navigator.pushNamed(context, AddMedicineView.id);
+          },
+        ),
+        SizedBox(height: 15),
+        ListTile(
+          leading: Icon(
             Icons.medical_information,
             color: Colors.white,
           ),
@@ -43,19 +68,9 @@ class CustomListViewforSlide extends StatelessWidget {
             'All Medicine',
             style: TextStyle(color: Colors.white),
           ),
-          onTap: () {},
-        ),
-        SizedBox(height: 15),
-        ListTile(
-          leading: Icon(
-            Icons.shopping_cart,
-            color: Colors.white,
-          ),
-          title: Text(
-            'Medicine Categories',
-            style: TextStyle(color: Colors.white),
-          ),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, AllMedicineView.id);
+          },
         ),
         SizedBox(height: 15),
         ListTile(
@@ -64,7 +79,7 @@ class CustomListViewforSlide extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            'User Profile',
+            'Profile',
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {},

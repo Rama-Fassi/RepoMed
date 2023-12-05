@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:repomed/constants.dart';
 
-import '../Views/details_view.dart';
+import 'details_table.dart';
 
 class CustomeCard extends StatelessWidget {
   const CustomeCard({Key? key, required this.medicineName}) : super(key: key);
@@ -37,7 +38,7 @@ class CustomeCard extends StatelessWidget {
                       child: Image.asset(
                         'assets/images/4.png',
                         width: 200,
-                        height: 150,
+                        height: 140,
                       ),
                     ),
                   ),
@@ -71,7 +72,7 @@ class CustomeCard extends StatelessWidget {
                         ),
                       ),
                       Icon(
-                        Icons.medical_information,
+                        FontAwesomeIcons.capsules,
                         color: kPrimaryColor,
                       ),
                     ],

@@ -1,12 +1,14 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/widgets/details_table.dart';
 
 import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/category_card.dart';
 import '../widgets/custom_card_for_getstart.dart';
+import '../widgets/left_slide.dart';
 import 'add_medicine_view.dart';
 import 'all_medicine_view.dart';
 
@@ -38,65 +40,105 @@ class _GetStartedState extends State<GetStarted> {
         return BlurryModalProgressHUD(
           inAsyncCall: isLoading,
           child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: kPrimaryColor,
-              centerTitle: true,
-              title: Text(
-                'RepoMed',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            body: Container(
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(color: Colors.grey.shade100),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 30),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(
-                          child: CustomCardForGetStart(
-                            icon: Icons.add_shopping_cart,
-                            text: 'Add Medicine',
-                            ontap: () {
-                              Navigator.pushNamed(context, AddMedicineView.id);
-                            },
+            body: Row(
+              children: [
+                Expanded(flex: 1, child: LeftSlideContainer()),
+                Expanded(
+                  flex: 5,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(color: Colors.grey.shade100),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 80),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomCardForGetStart(
+                                  icon: Icons.add_shopping_cart,
+                                  text: 'Add Medicine',
+                                  ontap: () {
+                                    Navigator.pushNamed(
+                                        context, AddMedicineView.id);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Expanded(
+                                child: CustomCardForGetStart(
+                                  text: 'All Medicines',
+                                  icon: Icons.medical_information,
+                                  ontap: () {
+                                    BlocProvider.of<AllApiCubit>(context)
+                                        .allMedicine(context);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Expanded(
+                                child: CustomCardForGetStart(
+                                  text: 'Categories',
+                                  icon: Icons.inventory_outlined,
+                                  ontap: () {},
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Expanded(
-                          child: CustomCardForGetStart(
-                            text: 'Medicines',
-                            icon: Icons.medical_information,
-                            ontap: () {
-                              BlocProvider.of<AllApiCubit>(context)
-                                  .allMedicine(context);
-                            },
+                          SizedBox(
+                            height: 40,
                           ),
-                        ),
-                        SizedBox(
-                          width: 50,
-                        ),
-                        Expanded(
-                          child: CustomCardForGetStart(
-                            text: 'All Orders',
-                            icon: Icons.inventory_outlined,
-                            ontap: () {},
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
+                          Row(
+                            children: [
+                              Expanded(
+                                child: CustomCardForGetStart(
+                                  text: 'All Orders',
+                                  icon: Icons.inventory_outlined,
+                                  ontap: () {},
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Expanded(
+                                child: CustomCardForGetStart(
+                                  icon: Icons.summarize_outlined,
+                                  text: 'Reports',
+                                  ontap: () {
+                                    Navigator.pushNamed(
+                                        context, AddMedicineView.id);
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                width: 50,
+                              ),
+                              Expanded(
+                                child: CustomCardForGetStart(
+                                  text: 'Medicines details',
+                                  icon: Icons.local_pharmacy_outlined,
+                                  ontap: () {
+                                    BlocProvider.of<AllApiCubit>(context)
+                                        .allMedicine(context);
+                                    Navigator.pushNamed(
+                                        context, TableWidget.id);
+                                  },
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
           ),
         );

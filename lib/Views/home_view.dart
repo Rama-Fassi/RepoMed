@@ -28,6 +28,12 @@ class HomeView extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Image.asset(
+                        'assets/images/Repomed_logo.png',
+                        width: 150,
+                        height: 150,
+                      ),
+                      kSizedBox,
                       Text(
                         'Manage Your',
                         style: TextStyle(
