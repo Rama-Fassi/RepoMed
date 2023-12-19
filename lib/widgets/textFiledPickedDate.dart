@@ -4,8 +4,7 @@ import 'package:intl/intl.dart';
 import '../constants.dart';
 
 class TextFiledPickedDate extends StatefulWidget {
-  TextFiledPickedDate({super.key, this.onChanged});
-  Function(String)? onChanged;
+  TextFiledPickedDate({super.key});
 
   @override
   State<StatefulWidget> createState() {
@@ -23,10 +22,14 @@ class _TextFiledPickedDate extends State<TextFiledPickedDate> {
     super.initState();
   }
 
+  String? expirationAt;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
-      onChanged: TextFiledPickedDate().onChanged,
+      onChanged: (value) {
+        expirationAt = value;
+      },
       controller: dateinput, //editing controller of this TextField
       decoration: InputDecoration(
         fillColor: Colors.white,
@@ -36,7 +39,7 @@ class _TextFiledPickedDate extends State<TextFiledPickedDate> {
           color: kLogoColor1,
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
-        labelText: 'Enter Expiration Date', //label text of field
+        labelText: 'Enter Expiration Date',
         alignLabelWithHint: true,
         labelStyle:
             const TextStyle(color: kColor4, fontWeight: FontWeight.bold),

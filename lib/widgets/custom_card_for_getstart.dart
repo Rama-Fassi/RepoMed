@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-
-import '../Views/add_medicine_view.dart';
 import '../constants.dart';
 
-class CustomCardForGetStart extends StatelessWidget {
-  const CustomCardForGetStart({
+class CustomCardForStartPage extends StatelessWidget {
+  const CustomCardForStartPage({
     super.key,
     required this.text,
     required this.icon,
@@ -20,7 +18,7 @@ class CustomCardForGetStart extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
         ),
         width: 220,
         height: 270,

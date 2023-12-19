@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../constants.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
-import 'custom_Text_Field.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
 
@@ -24,7 +23,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
     return Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         gradient: kLinearGradient,
       ),
       child: Form(
@@ -94,8 +93,10 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(
                     width: 150,
                     child: CustomButton(
+                      padding: 10,
                       borderRadius: 8,
                       width: double.infinity,
+                      height: 50,
                       onTap: () async {
                         if (formKey.currentState!.validate()) {
                           BlocProvider.of<AuthCubit>(context)

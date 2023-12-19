@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:repomed/Views/get_started.dart';
+import 'package:repomed/Views/start_page.dart';
 import 'package:repomed/widgets/custom_button.dart';
 import '../constants.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
   static String id = 'HomePage';
-
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -15,6 +14,7 @@ class HomeView extends StatelessWidget {
           // If the screen width is greater than 600 pixels, display a two-column layout
           return Scaffold(
             appBar: AppBar(
+              leading: null,
               backgroundColor: kPrimaryColor,
               elevation: 0.0,
             ),
@@ -54,7 +54,9 @@ class HomeView extends StatelessWidget {
                       CustomButton(
                         text: 'Get Started',
                         width: 300,
+                        height: 60,
                         borderRadius: 80,
+                        padding: 10,
                         onTap: () {
                           Navigator.pushNamed(context, GetStarted.id);
                         },
@@ -112,7 +114,9 @@ class HomeView extends StatelessWidget {
                       CustomButton(
                         text: 'Get Started',
                         width: 300,
+                        height: 60,
                         borderRadius: 80,
+                        padding: 10,
                         onTap: () {
                           Navigator.pushNamed(context, GetStarted.id);
                         },

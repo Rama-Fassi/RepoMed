@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repomed/constants.dart';
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
@@ -15,21 +16,22 @@ class CategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.only(right: 16),
+        padding: const EdgeInsets.all(15),
         child: Container(
-          height: 300,
-          width: 400,
+          // height: 100,
+          // width: 200,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            image: DecorationImage(image: image, fit: BoxFit.fill),
+            image: DecorationImage(image: image, fit: BoxFit.fitHeight),
           ),
           child: Center(
             child: Text(
               categoryName,
               style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold),
+                color: kPrimaryColor,
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),

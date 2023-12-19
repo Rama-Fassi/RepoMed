@@ -8,21 +8,24 @@ class CustomButton extends StatelessWidget {
       {required this.text,
       this.onTap,
       required this.width,
-      required this.borderRadius});
+      required this.borderRadius,
+      required this.padding,
+      required this.height});
   String text;
   Function()? onTap;
   double width;
   double borderRadius;
-
+  double padding;
+  double height;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(padding),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           width: width,
-          height: 60,
+          height: height,
           decoration: BoxDecoration(
             color: kPrimaryColor,
             borderRadius: BorderRadius.circular(borderRadius),

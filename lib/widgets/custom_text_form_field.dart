@@ -3,16 +3,17 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField(
-      {super.key,
-      this.labelText,
-      this.icon,
-      this.hint,
-      this.onChanged,
-      this.inputType,
-      this.label,
-      this.obsecureText = false,
-      this.onTap});
+  const CustomTextFormField({
+    super.key,
+    this.labelText,
+    this.icon,
+    this.hint,
+    this.onChanged,
+    this.inputType,
+    this.label,
+    this.obsecureText = false,
+    this.onTap,
+  });
   final String? labelText;
   final IconData? icon;
   final String? hint;
@@ -26,9 +27,10 @@ class CustomTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: kPrimaryColor,
+      obscureText: obsecureText!,
       keyboardType: inputType,
       onChanged: onChanged,
-      onTap: onTap,
+      // onTap: onTap,
       validator: (data) {
         if (data!.isEmpty) {
           return 'field is required';
@@ -38,9 +40,12 @@ class CustomTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        suffixIcon: Icon(
-          icon,
-          color: kLogoColor1,
+        suffixIcon: GestureDetector(
+          onTap: onTap,
+          child: Icon(
+            icon,
+            color: kPrimaryColor,
+          ),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
         labelText: labelText,

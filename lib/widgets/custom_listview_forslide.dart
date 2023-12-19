@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/add_medicine_view.dart';
 import 'package:repomed/Views/all_medicine_view.dart';
-import 'package:repomed/Views/get_started.dart';
+import 'package:repomed/Views/start_page.dart';
+import 'package:repomed/widgets/left_slide.dart';
+
+import '../cubits/auth_cubit/auth_cubit.dart';
 
 class CustomListViewforSlide extends StatelessWidget {
   const CustomListViewforSlide({
@@ -75,14 +79,17 @@ class CustomListViewforSlide extends StatelessWidget {
         SizedBox(height: 15),
         ListTile(
           leading: Icon(
-            Icons.person,
+            Icons.logout,
             color: Colors.white,
           ),
           title: Text(
-            'Profile',
+            'Log out',
             style: TextStyle(color: Colors.white),
           ),
-          onTap: () {},
+          onTap: () {
+            BlocProvider.of<AuthCubit>(context).logOut(context);
+            print("${AuthCubit.get(context).logoutModel?.messege?.message}kk");
+          },
         ),
         SizedBox(height: 15),
         ListTile(

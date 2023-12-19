@@ -1,11 +1,13 @@
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/widgets/custom_text_form_field.dart';
 import 'package:repomed/widgets/textFiledPickedDate.dart';
-
+import 'dart:typed_data';
 import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
-import 'custom_Text_Field.dart';
 import 'custom_button.dart';
 
 class AddMedicineViewBody extends StatefulWidget {
@@ -18,7 +20,12 @@ class AddMedicineViewBody extends StatefulWidget {
 }
 
 class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
+  Uint8List? _webImage;
+
+  File? _pickedImage;
+
   String? categoryName;
+
   String? scientificName;
 
   String? tradeName;
@@ -36,8 +43,8 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
   String? form;
 
   String? details;
-  GlobalKey<FormState> formKey = GlobalKey();
 
+  GlobalKey<FormState> formKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -64,13 +71,6 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      CustomTextFormField(
-                        onChanged: (value) {
-                          categoryName = value;
-                        },
-                        labelText: 'Category Name',
-                      ),
-                      kSizedBox,
                       CustomTextFormField(
                         onChanged: (value) {
                           scientificName = value;
@@ -104,11 +104,6 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                         inputType: TextInputType.number,
                       ),
                       kSizedBox,
-                      // TextFiledPickedDate(
-                      //   onChanged: (value) {
-                      //     expirationAt = value as DateTime;
-                      //   },
-                      // ),
                       CustomTextFormField(
                           inputType: TextInputType.datetime,
                           onChanged: (value) {
@@ -145,6 +140,35 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                           },
                           labelText: 'Details'),
                       kSizedBox,
+                      GestureDetector(
+                        onTap: () {
+                          _pickImage();
+                        },
+                        child: Container(
+                          width: 550,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(15),
+                            border: Border.all(
+                              color: kLogoColor1,
+                              width: 2,
+                            ),
+                          ),
+                          child: _pickedImage == null
+                              ? const Icon(
+                                  Icons.image,
+                                  size: 80,
+                                  color: kLogoColor1,
+                                )
+                              : kIsWeb
+                                  ? Image.memory(
+                                      _webImage!,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Image.file(_pickedImage!, fit: BoxFit.fill),
+                        ),
+                      ),
                     ],
                   ),
                 )
@@ -155,22 +179,25 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                 onTap: () {
                   if (formKey.currentState!.validate()) {
                     BlocProvider.of<AllApiCubit>(context).addMedicine(
-                        context: context,
-                        scientificName: scientificName!,
-                        tradeName: tradeName!,
-                        companyName: companyName!,
-                        categoriesName: categoriesName!,
-                        quantity: quantity!,
-                        expirationAt: expirationAt!,
-                        price: price!,
-                        form: form!,
-                        details: details!,
-                        categoryName: categoryName!);
+                      context: context,
+                      scientificName: scientificName!,
+                      tradeName: tradeName!,
+                      companyName: companyName!,
+                      categoriesName: categoriesName!,
+                      quantity: quantity!,
+                      expirationAt: expirationAt!,
+                      price: price!,
+                      form: form!,
+                      details: details!,
+                      photo: _webImage!,
+                    );
                   } else {}
                 },
                 text: 'Add Medicine',
                 width: 200,
+                height: 60,
                 borderRadius: 15,
+                padding: 10,
               ),
             ),
           ],
@@ -178,4 +205,56 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
       ),
     );
   }
+
+  Future<void> _pickImage() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.image,
+    );
+
+    if (result != null) {
+      if (!kIsWeb) {
+        setState(() {
+          _pickedImage = File(result.files.single.path!);
+        });
+      } else {
+        Uint8List bytes = result.files.single.bytes!;
+        setState(() {
+          _webImage = bytes;
+          _pickedImage = File("a");
+        });
+      }
+    } else {
+      print('No file selected');
+    }
+  }
+
+  //
+  // Future<void> _pickImage() async {
+  //   if (!kIsWeb) {
+  //     final ImagePicker _picker = ImagePicker();
+  //     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  //     if (image != null) {
+  //       var selected = File(image.path);
+  //       setState(() {
+  //         _pickedImage = selected;
+  //       });
+  //     } else {
+  //       print('No image has been picked');
+  //     }
+  //   } else if (kIsWeb) {
+  //     final ImagePicker _picker = ImagePicker();
+  //     XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+  //     if (image != null) {
+  //       var f = await image.readAsBytes();
+  //       setState(() {
+  //         webImage = f;
+  //         _pickedImage = File("a");
+  //       });
+  //     } else {
+  //       print('No image has been picked');
+  //     }
+  //   } else {
+  //     print("Somthing went wrong");
+  //   }
+  // }
 }

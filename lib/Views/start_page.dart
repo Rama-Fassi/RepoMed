@@ -1,12 +1,10 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/Views/categories_view.dart';
 import 'package:repomed/widgets/details_table.dart';
-
-import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../helper/show_snack_bar.dart';
-import '../widgets/category_card.dart';
 import '../widgets/custom_card_for_getstart.dart';
 import '../widgets/left_slide.dart';
 import 'add_medicine_view.dart';
@@ -34,6 +32,22 @@ class _GetStartedState extends State<GetStarted> {
         } else if (state is AllMedicineFailur) {
           showSnakbar(context, state.errMessage);
           isLoading = false;
+        } else if (state is AllMedicineDetailsLoading) {
+          isLoading = true;
+        } else if (state is AllMedicineDetailsSuccess) {
+          Navigator.pushNamed(context, TableWidget.id);
+          isLoading = false;
+        } else if (state is AllMedicineDetailsFailur) {
+          showSnakbar(context, state.errMessage);
+          isLoading = false;
+        } else if (state is AllCategoriesLoading) {
+          isLoading = true;
+        } else if (state is AllCategoriesSuccess) {
+          Navigator.pushNamed(context, CategoriesView.id);
+          isLoading = false;
+        } else if (state is AllCategoriesFailur) {
+          showSnakbar(context, state.errMessage);
+          isLoading = false;
         }
       },
       builder: (context, state) {
@@ -57,7 +71,7 @@ class _GetStartedState extends State<GetStarted> {
                           Row(
                             children: [
                               Expanded(
-                                child: CustomCardForGetStart(
+                                child: CustomCardForStartPage(
                                   icon: Icons.add_shopping_cart,
                                   text: 'Add Medicine',
                                   ontap: () {
@@ -66,11 +80,11 @@ class _GetStartedState extends State<GetStarted> {
                                   },
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForGetStart(
+                                child: CustomCardForStartPage(
                                   text: 'All Medicines',
                                   icon: Icons.medical_information,
                                   ontap: () {
@@ -79,35 +93,38 @@ class _GetStartedState extends State<GetStarted> {
                                   },
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForGetStart(
+                                child: CustomCardForStartPage(
                                   text: 'Categories',
                                   icon: Icons.inventory_outlined,
-                                  ontap: () {},
+                                  ontap: () {
+                                    BlocProvider.of<AllApiCubit>(context)
+                                        .allCategory(context);
+                                  },
                                 ),
                               ),
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 40,
                           ),
                           Row(
                             children: [
                               Expanded(
-                                child: CustomCardForGetStart(
+                                child: CustomCardForStartPage(
                                   text: 'All Orders',
                                   icon: Icons.inventory_outlined,
                                   ontap: () {},
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForGetStart(
+                                child: CustomCardForStartPage(
                                   icon: Icons.summarize_outlined,
                                   text: 'Reports',
                                   ontap: () {
@@ -116,18 +133,16 @@ class _GetStartedState extends State<GetStarted> {
                                   },
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForGetStart(
+                                child: CustomCardForStartPage(
                                   text: 'Medicines details',
                                   icon: Icons.local_pharmacy_outlined,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)
-                                        .allMedicine(context);
-                                    Navigator.pushNamed(
-                                        context, TableWidget.id);
+                                        .allMedicineDetails(context);
                                   },
                                 ),
                               ),

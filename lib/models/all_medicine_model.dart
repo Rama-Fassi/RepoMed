@@ -1,3 +1,6 @@
+import 'dart:io';
+import 'dart:ui';
+
 class AllMedicineModel {
   bool? success;
   List<AllMedicineData>? data;
@@ -26,32 +29,26 @@ class AllMedicineData {
   int? quantity;
   int? price;
   String? form;
-  String? photo;
+  File? photo;
   String? details;
   String? expirationAt;
-  Null deletedAt;
-  String? createdAt;
-  String? updatedAt;
 
-  AllMedicineData(
-      {this.id,
-      this.scientificName,
-      this.tradeName,
-      this.companyName,
-      this.categoriesName,
-      this.quantity,
-      this.price,
-      this.form,
-      this.photo,
-      this.details,
-      this.expirationAt,
-      this.deletedAt,
-      this.createdAt,
-      this.updatedAt});
+  AllMedicineData({
+    this.id,
+    this.scientificName,
+    this.tradeName,
+    this.companyName,
+    this.categoriesName,
+    this.quantity,
+    this.price,
+    this.form,
+    this.photo,
+    this.details,
+    this.expirationAt,
+  });
 
   AllMedicineData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    photo = json['photo'];
     scientificName = json['scientific_name'];
     tradeName = json['trade_name'];
     companyName = json['company_name'];
@@ -61,8 +58,5 @@ class AllMedicineData {
     form = json['form'];
     details = json['details'];
     expirationAt = json['expiration_at'];
-    deletedAt = json['deleted_at'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
   }
 }
