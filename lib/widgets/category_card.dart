@@ -1,38 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/constants.dart';
 
+import '../cubits/all_api_cubit/all_api_cubit.dart';
+
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({
+  CategoryCard({
     super.key,
-    required this.image,
+    this.image,
     required this.categoryName,
-    required this.onTap,
+    required this.id,
   });
-  final AssetImage image;
+  final AssetImage? image;
   final String categoryName;
-  final VoidCallback onTap;
+  final int? id;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        BlocProvider.of<AllApiCubit>(context).medicine(context, id: id!);
+      },
       child: Padding(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
         child: Container(
-          // height: 100,
-          // width: 200,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            image: DecorationImage(image: image, fit: BoxFit.fitHeight),
+            borderRadius: BorderRadius.circular(15),
+            image: DecorationImage(image: image!, fit: BoxFit.fitHeight),
           ),
-          child: Center(
-            child: Text(
-              categoryName,
-              style: const TextStyle(
-                color: kPrimaryColor,
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                categoryName,
+                style: const TextStyle(
+                  color: kPrimaryColor,
+                  fontSize: 35,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

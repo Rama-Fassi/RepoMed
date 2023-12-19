@@ -4,6 +4,7 @@ import 'package:repomed/Views/categories_view.dart';
 import 'package:repomed/Views/start_page.dart';
 import 'package:repomed/cubits/all_api_cubit/all_api_cubit.dart';
 import 'Views/add_medicine_view.dart';
+import 'Views/medicine_category_view.dart';
 import 'widgets/details_table.dart';
 import 'Views/home_view.dart';
 import 'Views/login_view.dart';
@@ -33,6 +34,7 @@ class RepoMedApp extends StatelessWidget {
           TableWidget.id: (context) => TableWidget(),
           LoginView.id: (context) => LoginView(),
           CategoriesView.id: (context) => CategoriesView(),
+          Medicines.id: (context) => Medicines(),
         },
         debugShowCheckedModeBanner: false,
         title: 'RepoMed',

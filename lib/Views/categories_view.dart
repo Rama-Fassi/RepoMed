@@ -1,6 +1,8 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/Views/all_medicine_view.dart';
+import 'package:repomed/Views/medicine_category_view.dart';
 import 'package:repomed/constants.dart';
 import 'package:repomed/widgets/category_card.dart';
 import 'package:repomed/widgets/custom_button.dart';
@@ -42,6 +44,14 @@ class _CategoriesViewState extends State<CategoriesView> {
             _showCategoryAddedSnackBar(context);
             isLoading = false;
           } else if (state is AddCategoryFailure) {
+            showSnakbar(context, state.errMessage);
+            isLoading = false;
+          } else if (state is MedicineLoading) {
+            isLoading = true;
+          } else if (state is MedicineSuccess) {
+            Navigator.pushNamed(context, Medicines.id);
+            isLoading = false;
+          } else if (state is MedicineFailure) {
             showSnakbar(context, state.errMessage);
             isLoading = false;
           }
@@ -126,11 +136,10 @@ class _CategoriesViewState extends State<CategoriesView> {
                               delegate: SliverChildBuilderDelegate(
                                 (BuildContext context, int index) {
                                   return CategoryCard(
-                                    image: AssetImage(
-                                        'assets/images/backgrounds/backGrounds.jpg'),
+                                    image: AssetImage('assets/images/12.jpg'),
                                     categoryName:
                                         '${cubit.categoryModel?.data?[index].name}',
-                                    onTap: () {},
+                                    id: cubit.categoryModel?.data?[index].id,
                                   );
                                 },
                                 childCount: cubit.categoryModel?.data?.length,

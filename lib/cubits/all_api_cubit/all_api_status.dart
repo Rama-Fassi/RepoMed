@@ -13,9 +13,8 @@ final class AllApiFailur extends AllApiState {
   final String errMessage;
   AllApiFailur(this.errMessage);
 }
-final class AllCategoriesLoading extends AllApiState {
 
-}
+final class AllCategoriesLoading extends AllApiState {}
 
 final class AllCategoriesSuccess extends AllApiState {}
 
@@ -31,6 +30,15 @@ final class AddCategorySuccess extends AllApiState {}
 final class AddCategoryFailure extends AllApiState {
   final String errMessage;
   AddCategoryFailure(this.errMessage);
+}
+
+final class MedicineLoading extends AllApiState {}
+
+final class MedicineSuccess extends AllApiState {}
+
+final class MedicineFailure extends AllApiState {
+  final String errMessage;
+  MedicineFailure(this.errMessage);
 }
 
 final class AllMedicineLoading extends AllApiState {}

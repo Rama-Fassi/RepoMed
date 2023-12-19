@@ -4,6 +4,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:repomed/Views/medicine_details_view.dart';
 import 'package:repomed/constants.dart';
 
 import '../cubits/all_api_cubit/all_api_cubit.dart';
@@ -11,13 +12,15 @@ import '../helper/show_snack_bar.dart';
 import 'details_table.dart';
 
 class CustomCard extends StatelessWidget {
-  const CustomCard(
-      {Key? key, required this.Name, this.medicinePrice, this.photo, this.id})
-      : super(key: key);
+  const CustomCard({
+    Key? key,
+    required this.Name,
+    this.medicinePrice,
+    this.photo,
+  }) : super(key: key);
   final String Name;
   final String? medicinePrice;
   final dynamic? photo;
-  final String? id;
   @override
   Widget build(BuildContext context) {
     bool isLoading = false;
@@ -94,7 +97,7 @@ class CustomCard extends StatelessWidget {
                           children: [
                             TextButton(
                               onPressed: () {
-
+                                Navigator.pushNamed(context, TableWidget.id);
                               },
                               child: Text(
                                 'Details',
@@ -104,7 +107,8 @@ class CustomCard extends StatelessWidget {
                             Text(
                               // '${medicinePrice}'
                               // '\$',
-                              '${medicinePrice}'.substring(0, 4) + '\$',
+                              '${medicinePrice}'
+                              '\$',
                               style: TextStyle(
                                 color: kPrimaryColor,
                                 fontWeight: FontWeight.bold,

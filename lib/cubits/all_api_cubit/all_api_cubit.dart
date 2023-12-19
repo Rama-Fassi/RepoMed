@@ -12,6 +12,7 @@ import '../../models/all_medicine_model.dart';
 import '../../models/add_medicine_models.dart';
 import '../../models/category_model.dart';
 import '../../models/login_response.dart';
+import '../../models/medicine_model.dart';
 import '../auth_cubit/auth_cubit.dart';
 part 'all_api_status.dart';
 
@@ -74,6 +75,32 @@ class AllApiCubit extends Cubit<AllApiState> {
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     );
     return AddCategory.fromJson(data);
+  }
+
+  /// medicine service
+
+  medicine(context, {required int id}) async {
+    emit(MedicineLoading());
+
+    try {
+      await getMedicine(context, id: id);
+      emit(MedicineSuccess());
+    } catch (e) {
+      emit(MedicineFailure(e.toString()));
+    }
+  }
+
+  MedicineModel? medicineModel;
+  Future<Map<String, dynamic>?> getMedicine(context, {required int id}) async {
+    await Api()
+        .get(
+      url: 'http://127.0.0.1:8000/api/WareHouse/category/$id',
+      token: AuthCubit.get(context).loginResponseModel!.data!.token,
+    )
+        .then((value) {
+      print(value);
+      medicineModel = MedicineModel.fromJson(value);
+    });
   }
 
   /// all medicine service
