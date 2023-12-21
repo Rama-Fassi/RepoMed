@@ -77,7 +77,7 @@ class AllApiCubit extends Cubit<AllApiState> {
     return AddCategory.fromJson(data);
   }
 
-  /// medicine service
+  /// medicine
 
   medicine(context, {required int id}) async {
     emit(MedicineLoading());
@@ -112,7 +112,7 @@ class AllApiCubit extends Cubit<AllApiState> {
 
       emit(AllMedicineSuccess());
     } catch (e) {
-      emit(AllMedicineFailur(e.toString()));
+      emit(AllMedicineFailure(e.toString()));
     }
   }
 
@@ -155,6 +155,7 @@ class AllApiCubit extends Cubit<AllApiState> {
     });
   }
 
+//Add medicine
   AddMedicineModel? addMedicineModel;
   addMedicine({
     required BuildContext context,

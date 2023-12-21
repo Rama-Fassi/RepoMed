@@ -45,9 +45,9 @@ final class AllMedicineLoading extends AllApiState {}
 
 final class AllMedicineSuccess extends AllApiState {}
 
-final class AllMedicineFailur extends AllApiState {
+final class AllMedicineFailure extends AllApiState {
   final String errMessage;
-  AllMedicineFailur(this.errMessage);
+  AllMedicineFailure(this.errMessage);
 }
 
 final class AllMedicineDetailsLoading extends AllApiState {}

@@ -23,7 +23,7 @@ class GridViewCard extends StatelessWidget {
           Name: '${cubit.allMedicineModel?.data?[index].scientificName}',
           medicinePrice: '${cubit.allMedicineModel?.data?[index].price}',
           // photo: '${cubit.allMedicineModel?.data?[index].photo}',
-          // id: '${cubit.allMedicineDetailsModel?.data?[index].id}',
+          id: index,
         );
       },
     );

@@ -2,7 +2,8 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/categories_view.dart';
-import 'package:repomed/widgets/details_table.dart';
+import 'package:repomed/Views/all_medicine_details_view.dart';
+import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/custom_card_for_getstart.dart';
@@ -29,13 +30,13 @@ class _GetStartedState extends State<GetStarted> {
         } else if (state is AllMedicineSuccess) {
           Navigator.pushNamed(context, AllMedicineView.id);
           isLoading = false;
-        } else if (state is AllMedicineFailur) {
+        } else if (state is AllMedicineFailure) {
           showSnakbar(context, state.errMessage);
           isLoading = false;
         } else if (state is AllMedicineDetailsLoading) {
           isLoading = true;
         } else if (state is AllMedicineDetailsSuccess) {
-          Navigator.pushNamed(context, TableWidget.id);
+          Navigator.pushNamed(context, AllMedicineDetails.id);
           isLoading = false;
         } else if (state is AllMedicineDetailsFailur) {
           showSnakbar(context, state.errMessage);

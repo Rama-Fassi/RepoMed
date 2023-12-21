@@ -5,14 +5,14 @@ import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../helper/show_snack_bar.dart';
 import '../models/all_medicine_model.dart';
 
-class TableWidget extends StatefulWidget {
+class AllMedicineDetails extends StatefulWidget {
   static String id = 'TableWidget';
 
   @override
-  _TableWidgetState createState() => _TableWidgetState();
+  _AllMedicineDetailsState createState() => _AllMedicineDetailsState();
 }
 
-class _TableWidgetState extends State<TableWidget> {
+class _AllMedicineDetailsState extends State<AllMedicineDetails> {
   List<AllMedicineData> medicinedetails = [];
 
   @override
@@ -42,9 +42,9 @@ class _TableWidgetState extends State<TableWidget> {
         if (state is AllMedicineLoading) {
           isLoading = true;
         } else if (state is AllMedicineSuccess) {
-          Navigator.pushNamed(context, TableWidget.id);
+          Navigator.pushNamed(context, AllMedicineDetails.id);
           isLoading = false;
-        } else if (state is AllMedicineFailur) {
+        } else if (state is AllMedicineFailure) {
           showSnakbar(context, state.errMessage);
           isLoading = false;
         }
