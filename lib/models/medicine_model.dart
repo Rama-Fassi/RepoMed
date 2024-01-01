@@ -1,11 +1,11 @@
-class MedicineModel {
+class CategoryMedicineModel {
   bool? success;
   List<MedicineData>? data;
   String? messege;
 
-  MedicineModel({this.success, this.data, this.messege});
+  CategoryMedicineModel({this.success, this.data, this.messege});
 
-  MedicineModel.fromJson(Map<String, dynamic> json) {
+  CategoryMedicineModel.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     if (json['data'][1] != null) {
       data = <MedicineData>[];

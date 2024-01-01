@@ -54,7 +54,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   LogoutModel? logoutModel;
   Future<List<dynamic>?> getLogout(context) async {
-    //print(cubit.enterResponseModel!.token);
     await Api()
         .get(
       url: 'http://127.0.0.1:8000/api/Pharmacy/logout',

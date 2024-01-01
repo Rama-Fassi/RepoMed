@@ -67,3 +67,39 @@ final class AddMedicineFailure extends AllApiState {
   final String errMessage;
   AddMedicineFailure(this.errMessage);
 }
+
+final class AllCartsLoading extends AllApiState {}
+
+final class AllCartsSuccess extends AllApiState {}
+
+final class AllCartsFailure extends AllApiState {
+  final String errMessage;
+  AllCartsFailure(this.errMessage);
+}
+
+final class ShowCartLoading extends AllApiState {}
+
+final class ShowCartSuccess extends AllApiState {}
+
+final class ShowCartFailure extends AllApiState {
+  final String errMessage;
+  ShowCartFailure(this.errMessage);
+}
+
+final class AllOrdersLoading extends AllApiState {}
+
+final class AllOdersSuccess extends AllApiState {}
+
+final class AllOrdersFailure extends AllApiState {
+  final String errMessage;
+  AllOrdersFailure(this.errMessage);
+}
+
+final class UpdateCartLoading extends AllApiState {}
+
+final class UpdateCartSuccess extends AllApiState {}
+
+final class UpdateCartFailure extends AllApiState {
+  final String errMessage;
+  UpdateCartFailure(this.errMessage);
+}

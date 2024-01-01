@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/widgets/check_language.dart';
 import '../constants.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
+import '../generated/l10n.dart';
 import 'custom_button.dart';
 import 'custom_text_form_field.dart';
+import 'package:intl/intl.dart';
+import 'check_language.dart';
 
 class LoginViewBody extends StatefulWidget {
   const LoginViewBody({super.key});
@@ -43,8 +47,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
               const SizedBox(
                 height: 10,
               ),
-              const Text(
-                "RepoMed",
+              Text(
+                S.of(context).RepoMed,
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
@@ -59,8 +63,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(
                     width: 500,
                     child: CustomTextFormField(
-                      hint: 'Email',
-                      label: 'Email',
+                      hint: S.of(context).Email,
+                      label: S.of(context).Email,
                       inputType: TextInputType.emailAddress,
                       icon: Icons.email,
                       onChanged: (value) {
@@ -74,8 +78,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(
                     width: 500,
                     child: CustomTextFormField(
-                      hint: 'password',
-                      label: 'Password',
+                      hint: S.of(context).password,
+                      label: S.of(context).password,
                       onChanged: (value) {
                         password = value;
                       },
@@ -88,23 +92,20 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                     ),
                   ),
                   const SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
-                  SizedBox(
-                    width: 150,
-                    child: CustomButton(
-                      padding: 10,
-                      borderRadius: 8,
-                      width: double.infinity,
-                      height: 50,
-                      onTap: () async {
-                        if (formKey.currentState!.validate()) {
-                          BlocProvider.of<AuthCubit>(context)
-                              .login(email: email!, password: password!);
-                        } else {}
-                      },
-                      text: 'Login',
-                    ),
+                  CustomButton(
+                    padding: 10,
+                    borderRadius: 8,
+                    width: Language.isArabic() ? 150 : 100,
+                    height: 50,
+                    onTap: () async {
+                      if (formKey.currentState!.validate()) {
+                        BlocProvider.of<AuthCubit>(context)
+                            .login(email: email!, password: password!);
+                      } else {}
+                    },
+                    text: S.of(context).Login,
                   ),
                 ],
               ),

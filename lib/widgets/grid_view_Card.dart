@@ -22,6 +22,7 @@ class GridViewCard extends StatelessWidget {
         return CustomCard(
           Name: '${cubit.allMedicineModel?.data?[index].scientificName}',
           medicinePrice: '${cubit.allMedicineModel?.data?[index].price}',
+          medicineQuantity: '${cubit.allMedicineModel?.data?[index].quantity}',
           // photo: '${cubit.allMedicineModel?.data?[index].photo}',
           id: index,
         );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
-class CustomCardForStartPage extends StatelessWidget {
-  const CustomCardForStartPage({
+class StartPageContainer extends StatelessWidget {
+  const StartPageContainer({
     super.key,
     required this.text,
     required this.icon,

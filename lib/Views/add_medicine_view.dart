@@ -1,10 +1,13 @@
+import 'dart:js_interop';
+
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/constants.dart';
 import 'package:repomed/widgets/custom_button.dart';
-import 'package:repomed/widgets/left_slide.dart';
+import 'package:repomed/widgets/custom_slide.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
+import '../generated/l10n.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/add_medicine_view_body.dart';
 import '../widgets/custom_Text_Field.dart';
@@ -18,6 +21,14 @@ class AddMedicineView extends StatefulWidget {
 }
 
 class _AddMedicineViewState extends State<AddMedicineView> {
+  void _showMedicineAddedSnackBar(BuildContext context) {
+    final snackBar = SnackBar(
+      content: Text(S.of(context).Medicine_Added_Successfully),
+    );
+
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +37,7 @@ class _AddMedicineViewState extends State<AddMedicineView> {
         if (state is AddMedicineLoading) {
           isLoading = true;
         } else if (state is AddMedicineSuccess) {
-          Navigator.pop(context);
+          _showMedicineAddedSnackBar(context);
           isLoading = false;
         } else if (state is AddMedicineFailure) {
           showSnakbar(context, state.errMessage);
@@ -38,7 +49,7 @@ class _AddMedicineViewState extends State<AddMedicineView> {
         child: Scaffold(
           body: Row(
             children: [
-              Expanded(flex: 1, child: LeftSlideContainer()),
+              Expanded(flex: 1, child: CustomSlide()),
               Expanded(
                 flex: 5,
                 child: AddMedicineViewBody(),

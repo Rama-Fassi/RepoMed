@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:repomed/constants.dart';
 import '../Views/medicine_details_view.dart';
+import '../generated/l10n.dart';
 
 class CustomCard extends StatelessWidget {
   const CustomCard({
@@ -10,11 +11,15 @@ class CustomCard extends StatelessWidget {
     this.medicinePrice,
     this.photo,
     this.id,
+    this.medicineQuantity,
   }) : super(key: key);
   final String Name;
   final String? medicinePrice;
+  final String? medicineQuantity;
+
   final dynamic? photo;
   final dynamic? id;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -36,73 +41,80 @@ class CustomCard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  flex: 6,
-                  child: Center(
-                    child: Icon(
-                      FontAwesomeIcons.capsules,
-                      color: kPrimaryColor,
-                      size: 80,
-                    ),
-                    // child: Container(
-                    //   child: Image.network(
-                    //     photo,
-                    //     width: 200,
-                    //     height: 140,
-                    //   ),
-                    // ),
+                Center(
+                  child: Icon(
+                    FontAwesomeIcons.capsules,
+                    color: kPrimaryColor,
+                    size: 100,
+                  ),
+                  // child: Container(
+                  //   child: Image.network(
+                  //     photo,
+                  //     width: 200,
+                  //     height: 140,
+                  //   ),
+                  // ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Text(
+                  // medicineName.substring(0, 5),
+                  Name,
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
                   ),
                 ),
-                Expanded(
-                  flex: 2,
-                  child: Text(
-                    // medicineName.substring(0, 5),
-                    Name,
-                    style: TextStyle(
-                      color: kPrimaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
-                    ),
-                  ),
+                SizedBox(
+                  height: 20,
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    MedicineDetailsView(index: id)),
-                          );
-                        },
-                        child: Text(
-                          'Details',
-                          style: TextStyle(color: kPrimaryColor),
-                        ),
-                      ),
-                      Text(
-                        // '${medicinePrice}'
-                        // '\$',
-                        '${medicinePrice}'
-                        '\$',
-                        style: TextStyle(
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  MedicineDetailsView(index: id)),
+                        );
+                      },
+                      child: Container(
+                        width: 60,
+                        height: 25,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
                           color: kPrimaryColor,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                        ),
+                        child: Center(
+                          child: Text(
+                            S.of(context).Details1,
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
-                      // Icon(
-                      //   FontAwesomeIcons.capsules,
-                      //   color: kPrimaryColor,
-                      // ),
-                    ],
-                  ),
+                    ),
+                    Text(
+                      // '${medicinePrice}'
+                      // '\$',
+                      '${medicineQuantity}',
+                      // '\$',
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
+                    ),
+                    // Icon(
+                    //   FontAwesomeIcons.capsules,
+                    //   color: kPrimaryColor,
+                    // ),
+                  ],
                 ),
               ],
             ),

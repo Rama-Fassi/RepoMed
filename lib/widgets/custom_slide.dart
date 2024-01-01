@@ -1,6 +1,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/widgets/check_language.dart';
 
 import '../Views/add_medicine_view.dart';
 import '../Views/login_view.dart';
@@ -9,10 +10,10 @@ import '../cubits/auth_cubit/auth_cubit.dart';
 import '../helper/show_snack_bar.dart';
 import 'custom_listview_forslide.dart';
 
-class LeftSlideContainer extends StatelessWidget {
+class CustomSlide extends StatelessWidget {
   bool? isLoading = false;
 
-  LeftSlideContainer({
+  CustomSlide({
     super.key,
     this.isLoading,
   });
@@ -38,14 +39,24 @@ class LeftSlideContainer extends StatelessWidget {
             Container(
               height: MediaQuery.of(context).size.height,
               width: 100,
-              decoration: const BoxDecoration(
+              decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  bottomRight: Radius.circular(30),
+                  topRight: Language.isEnglish()
+                      ? Radius.circular(30)
+                      : Radius.circular(0),
+                  topLeft: Language.isArabic()
+                      ? Radius.circular(30)
+                      : Radius.circular(0),
+                  bottomRight: Language.isEnglish()
+                      ? Radius.circular(30)
+                      : Radius.circular(0),
+                  bottomLeft: Language.isArabic()
+                      ? Radius.circular(30)
+                      : Radius.circular(0),
                 ),
                 color: kPrimaryColor,
               ),
-              child: CustomListViewforSlide(),
+              child: SlideListView(),
             ));
   }
 }

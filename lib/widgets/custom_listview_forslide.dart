@@ -3,12 +3,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/add_medicine_view.dart';
 import 'package:repomed/Views/all_medicine_view.dart';
 import 'package:repomed/Views/start_page.dart';
-import 'package:repomed/widgets/left_slide.dart';
+import 'package:repomed/widgets/custom_slide.dart';
 
 import '../cubits/auth_cubit/auth_cubit.dart';
+import '../generated/l10n.dart';
 
-class CustomListViewforSlide extends StatelessWidget {
-  const CustomListViewforSlide({
+class SlideListView extends StatelessWidget {
+  const SlideListView({
     super.key,
   });
 
@@ -24,7 +25,7 @@ class CustomListViewforSlide extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: Text(
-              'RepoMed',
+              S.of(context).RepoMed,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -42,7 +43,7 @@ class CustomListViewforSlide extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            'Home',
+            S.of(context).Home,
             style: TextStyle(
               color: Colors.white,
             ),
@@ -55,7 +56,7 @@ class CustomListViewforSlide extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            'Add Medicine',
+            S.of(context).add_Medicine,
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
@@ -69,7 +70,7 @@ class CustomListViewforSlide extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            'All Medicine',
+            S.of(context).All_Medicines,
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
@@ -83,12 +84,11 @@ class CustomListViewforSlide extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            'Log out',
+            S.of(context).Log_out,
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
             BlocProvider.of<AuthCubit>(context).logOut(context);
-            print("${AuthCubit.get(context).logoutModel?.messege?.message}kk");
           },
         ),
         SizedBox(height: 15),
@@ -98,7 +98,7 @@ class CustomListViewforSlide extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            'Settings',
+            S.of(context).Settings,
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {},

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/categories_view.dart';
 import 'package:repomed/Views/all_medicine_details_view.dart';
+import 'package:repomed/Views/all_carts_view.dart';
 import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
+import '../generated/l10n.dart';
 import '../helper/show_snack_bar.dart';
-import '../widgets/custom_card_for_getstart.dart';
-import '../widgets/left_slide.dart';
+import '../widgets/start_page_container.dart';
+import '../widgets/custom_slide.dart';
 import 'add_medicine_view.dart';
 import 'all_medicine_view.dart';
 
@@ -49,6 +51,14 @@ class _GetStartedState extends State<GetStarted> {
         } else if (state is AllCategoriesFailur) {
           showSnakbar(context, state.errMessage);
           isLoading = false;
+        } else if (state is AllCartsLoading) {
+          isLoading = true;
+        } else if (state is AllCartsSuccess) {
+          Navigator.pushNamed(context, AllCartsView.id);
+          isLoading = false;
+        } else if (state is AllCartsFailure) {
+          showSnakbar(context, state.errMessage);
+          isLoading = false;
         }
       },
       builder: (context, state) {
@@ -57,7 +67,7 @@ class _GetStartedState extends State<GetStarted> {
           child: Scaffold(
             body: Row(
               children: [
-                Expanded(flex: 1, child: LeftSlideContainer()),
+                Expanded(flex: 1, child: CustomSlide()),
                 Expanded(
                   flex: 5,
                   child: Container(
@@ -72,9 +82,9 @@ class _GetStartedState extends State<GetStarted> {
                           Row(
                             children: [
                               Expanded(
-                                child: CustomCardForStartPage(
+                                child: StartPageContainer(
                                   icon: Icons.add_shopping_cart,
-                                  text: 'Add Medicine',
+                                  text: S.of(context).add_Medicine,
                                   ontap: () {
                                     Navigator.pushNamed(
                                         context, AddMedicineView.id);
@@ -85,8 +95,8 @@ class _GetStartedState extends State<GetStarted> {
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForStartPage(
-                                  text: 'All Medicines',
+                                child: StartPageContainer(
+                                  text: S.of(context).All_Medicines,
                                   icon: Icons.medical_information,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)
@@ -98,8 +108,8 @@ class _GetStartedState extends State<GetStarted> {
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForStartPage(
-                                  text: 'Categories',
+                                child: StartPageContainer(
+                                  text: S.of(context).Categories,
                                   icon: Icons.inventory_outlined,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)
@@ -115,19 +125,23 @@ class _GetStartedState extends State<GetStarted> {
                           Row(
                             children: [
                               Expanded(
-                                child: CustomCardForStartPage(
-                                  text: 'All Orders',
-                                  icon: Icons.inventory_outlined,
-                                  ontap: () {},
+                                child: StartPageContainer(
+                                  text: S.of(context).All_Carts,
+                                  icon: Icons.shopping_cart_outlined,
+                                  // icon: Icons.inventory_outlined,
+                                  ontap: () {
+                                    BlocProvider.of<AllApiCubit>(context)
+                                        .allCarts(context);
+                                  },
                                 ),
                               ),
                               const SizedBox(
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForStartPage(
+                                child: StartPageContainer(
                                   icon: Icons.summarize_outlined,
-                                  text: 'Reports',
+                                  text: S.of(context).Reports,
                                   ontap: () {
                                     Navigator.pushNamed(
                                         context, AddMedicineView.id);
@@ -138,8 +152,8 @@ class _GetStartedState extends State<GetStarted> {
                                 width: 50,
                               ),
                               Expanded(
-                                child: CustomCardForStartPage(
-                                  text: 'Medicines details',
+                                child: StartPageContainer(
+                                  text: S.of(context).Medicines_details,
                                   icon: Icons.local_pharmacy_outlined,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)

@@ -8,6 +8,7 @@ import 'package:repomed/widgets/textFiledPickedDate.dart';
 import 'dart:typed_data';
 import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
+import '../generated/l10n.dart';
 import 'custom_button.dart';
 
 class AddMedicineViewBody extends StatefulWidget {
@@ -55,7 +56,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
           children: [
             kSizedBox,
             Text(
-              'Enter The Medicine Details',
+              S.of(context).Enter_The_Medicine_Details,
               style: TextStyle(
                   fontSize: 25,
                   color: kLogoColor1,
@@ -75,32 +76,32 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                         onChanged: (value) {
                           scientificName = value;
                         },
-                        labelText: 'Scientific Name',
+                        labelText: S.of(context).Scientific_Name,
                       ),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             tradeName = value;
                           },
-                          labelText: 'Trade Name'),
+                          labelText: S.of(context).Trade_Name),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             categoriesName = value;
                           },
-                          labelText: 'Medicine Category'),
+                          labelText: S.of(context).Medicine_Category),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             companyName = value;
                           },
-                          labelText: 'The Manufacture Company'),
+                          labelText: S.of(context).The_Manufacture_Company),
                       kSizedBox,
                       CustomTextFormField(
                         onChanged: (value) {
                           quantity = value;
                         },
-                        labelText: 'Quantity',
+                        labelText: S.of(context).Quantity,
                         inputType: TextInputType.number,
                       ),
                       kSizedBox,
@@ -109,7 +110,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                           onChanged: (value) {
                             expirationAt = value;
                           },
-                          labelText: 'expiration time'),
+                          labelText: S.of(context).expiration_time),
                       kSizedBox,
                     ],
                   ),
@@ -126,19 +127,19 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                           onChanged: (value) {
                             price = value;
                           },
-                          labelText: 'The Price'),
+                          labelText: S.of(context).The_Price),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             form = value;
                           },
-                          labelText: 'Form'),
+                          labelText: S.of(context).Form),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             details = value;
                           },
-                          labelText: 'Details'),
+                          labelText: S.of(context).Details),
                       kSizedBox,
                       GestureDetector(
                         onTap: () {
@@ -193,7 +194,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                     );
                   } else {}
                 },
-                text: 'Add Medicine',
+                text: S.of(context).Add_Medicine,
                 width: 200,
                 height: 60,
                 borderRadius: 15,
