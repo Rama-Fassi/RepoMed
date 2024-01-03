@@ -1,6 +1,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/constants.dart';
 import 'package:repomed/widgets/category_card.dart';
 import 'package:repomed/widgets/custom_text_form_field.dart';
@@ -37,7 +38,7 @@ class _CategoriesViewState extends State<CategoriesView> {
         if (state is AddCategoryLoading) {
           isLoading = true;
         } else if (state is AddCategorySuccess) {
-          showSnakbar(context, S.of(context).Category_Added_Successfully);
+          showSnakbar(context, "Category_Added_Successfully".tr(context));
           isLoading = false;
         } else if (state is AddCategoryFailure) {
           showSnakbar(context, state.errMessage);
@@ -74,7 +75,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                             children: [
                               Expanded(
                                 child: CustomTextFormField(
-                                  labelText: S.of(context).Add_New_Category,
+                                  labelText: "Add_New_Category".tr(context),
                                   onChanged: (value) {
                                     categoryName = value;
                                   },
@@ -99,7 +100,7 @@ class _CategoriesViewState extends State<CategoriesView> {
                                   ),
                                   child: Center(
                                     child: Text(
-                                      S.of(context).Add,
+                                      "Add".tr(context),
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 22,

@@ -5,6 +5,7 @@ import '../widgets/all_medicine_search.dart';
 import '../widgets/custom_card.dart';
 import '../widgets/grid_view_Card.dart';
 import '../widgets/custom_slide.dart';
+import 'medicine_details_view.dart';
 
 class AllMedicineView extends StatelessWidget {
   const AllMedicineView({Key? key}) : super(key: key);
@@ -59,6 +60,14 @@ class AllMedicineView extends StatelessWidget {
                               '${cubit.allMedicineModel?.data?[index].quantity}',
                           // photo: '${cubit.allMedicineModel?.data?[index].photo}',
                           id: index,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      MedicineDetailsView(index: index)),
+                            );
+                          },
                         );
                       },
                       childCount: cubit.allMedicineModel?.data?.length,
@@ -74,5 +83,3 @@ class AllMedicineView extends StatelessWidget {
     );
   }
 }
-
-

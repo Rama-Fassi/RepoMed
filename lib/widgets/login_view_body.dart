@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/widgets/check_language.dart';
 import '../constants.dart';
 import '../cubits/auth_cubit/auth_cubit.dart';
@@ -48,7 +49,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                 height: 10,
               ),
               Text(
-                S.of(context).RepoMed,
+                "RepoMed".tr(context),
                 style: TextStyle(
                   fontSize: 50,
                   fontWeight: FontWeight.bold,
@@ -63,8 +64,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(
                     width: 500,
                     child: CustomTextFormField(
-                      hint: S.of(context).Email,
-                      label: S.of(context).Email,
+                      hint: "Email".tr(context),
+                      label: "Email".tr(context),
                       inputType: TextInputType.emailAddress,
                       icon: Icons.email,
                       onChanged: (value) {
@@ -78,8 +79,8 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   SizedBox(
                     width: 500,
                     child: CustomTextFormField(
-                      hint: S.of(context).password,
-                      label: S.of(context).password,
+                      hint: "password".tr(context),
+                      label: "password".tr(context),
                       onChanged: (value) {
                         password = value;
                       },
@@ -97,7 +98,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                   CustomButton(
                     padding: 10,
                     borderRadius: 8,
-                    width: Language.isArabic() ? 150 : 100,
+                    width: Language.isArabic(context) ? 150 : 100,
                     height: 50,
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
@@ -105,7 +106,7 @@ class _LoginViewBodyState extends State<LoginViewBody> {
                             .login(email: email!, password: password!);
                       } else {}
                     },
-                    text: S.of(context).Login,
+                    text: "Login".tr(context),
                   ),
                 ],
               ),

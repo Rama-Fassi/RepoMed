@@ -1,6 +1,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/widgets/custom_Text_Field.dart';
 import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
@@ -14,15 +15,15 @@ class EditCartBody extends StatefulWidget {
       this.index,
       this.id,
       this.user_id,
-      this.status,
-      this.paid_status,
+      // this.status,
+      // this.paid_status,
       this.createdAt})
       : super(key: key);
   int? index;
   final String? id;
   final String? user_id;
-  String? status;
-  String? paid_status;
+  //String? status;
+  // String? paid_status;
   final String? createdAt;
 
   @override
@@ -84,7 +85,7 @@ class _EditCartBodyState extends State<EditCartBody> {
                           value: selectedStatus,
                           onChanged: (String? newValue) {
                             setState(() {
-                              selectedStatus = newValue!;
+                              selectedStatus = newValue;
                             });
                           },
                           isExpanded: true,
@@ -100,10 +101,10 @@ class _EditCartBodyState extends State<EditCartBody> {
                             color: Colors.transparent,
                           ),
                           items: <String>[
-                            S.of(context).New,
-                            S.of(context).Preparing,
-                            S.of(context).Delivering,
-                            S.of(context).Received
+                            "New".tr(context),
+                            "Preparing".tr(context),
+                            "Delivering".tr(context),
+                            "Received".tr(context)
                           ].map<DropdownMenuItem<String>>((String? value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -150,8 +151,8 @@ class _EditCartBodyState extends State<EditCartBody> {
                             color: Colors.transparent,
                           ),
                           items: <String>[
-                            S.of(context).Paid,
-                            S.of(context).Un_Paid
+                            "Paid".tr(context),
+                            "Un_Paid".tr(context)
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,
@@ -179,7 +180,7 @@ class _EditCartBodyState extends State<EditCartBody> {
                             paid_status: selectedPaidStatus,
                             id: widget.index!);
                       },
-                      text: S.of(context).Edit,
+                      text: "Edit".tr(context),
                       width: 100,
                       borderRadius: 8,
                       padding: 8,

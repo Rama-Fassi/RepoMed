@@ -7,16 +7,15 @@ import '../generated/l10n.dart';
 import '../widgets/custom_medicine_details.dart';
 import '../widgets/custom_slide.dart';
 
-class MedicineDetailsView extends StatelessWidget {
-  static String id = 'MedicineDetail';
+class CategoryMedicineDetailsView extends StatelessWidget {
+  static String id = 'CategoryMedicineDetail';
 
-  MedicineDetailsView({super.key, this.index});
+  CategoryMedicineDetailsView({super.key, this.index});
   int? index;
 
   @override
   Widget build(BuildContext context) {
     AllApiCubit cubit = AllApiCubit.get(context);
-    cubit.getAllMedicine(context);
     return Scaffold(
       body: Row(
         children: [
@@ -42,56 +41,56 @@ class MedicineDetailsView extends StatelessWidget {
                           const SizedBox(height: 35),
                           CustomDetail(
                               text:
-                                  '${"Scientific_Name".tr(context)}: ${cubit.allMedicineModel?.data?[index!].scientificName}',
+                                  '${"Scientific_Name".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].scientificName}',
                               index: index,
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"Trade_Name".tr(context)}: ${cubit.allMedicineModel?.data?[index!].tradeName}',
+                                  '${"Trade_Name".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].tradeName}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"Medicine_Category".tr(context)}: ${cubit.allMedicineModel?.data?[index!].categoriesName}',
+                                  '${"Medicine_Category".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].categoriesName}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"Quantity".tr(context)}: ${cubit.allMedicineModel?.data?[index!].quantity}',
+                                  '${"Quantity".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].quantity}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"The_Manufacture_Company".tr(context)}: ${cubit.allMedicineModel?.data?[index!].companyName}',
+                                  '${"The_Manufacture_Company".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].companyName}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"The_Price".tr(context)}: ${cubit.allMedicineModel?.data?[index!].price}',
+                                  '${"The_Price".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].price}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"expiration_time".tr(context)}: ${cubit.allMedicineModel?.data?[index!].expirationAt}',
+                                  '${"expiration_time".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].expirationAt}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"Form".tr(context)}: ${cubit.allMedicineModel?.data?[index!].form}',
+                                  '${"Form".tr(context)}: ${cubit.categorymedicinesModel?.data?[index!].form}',
                               width: 600),
                           kSizedBoxless,
                           CustomDetail(
                               index: index,
                               text:
-                                  '${"description".tr(context)} : ${cubit.allMedicineModel?.data?[index!].details}',
+                                  '${"description".tr(context)} : ${cubit.categorymedicinesModel?.data?[index!].details}',
                               width: 600),
                           kSizedBoxless,
                           Row(

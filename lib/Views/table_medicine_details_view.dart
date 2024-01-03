@@ -56,7 +56,7 @@ class _AllMedicineDetailsState extends State<AllMedicineDetails> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                'Medicine Details',
+                'All Medicine Details',
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -66,6 +66,9 @@ class _AllMedicineDetailsState extends State<AllMedicineDetails> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  SizedBox(
+                    height: 10,
+                  ),
                   Center(
                     child: SingleChildScrollView(
                       scrollDirection: Axis.vertical,
@@ -73,7 +76,7 @@ class _AllMedicineDetailsState extends State<AllMedicineDetails> {
                         border: TableBorder.all(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        columnSpacing: 10.0,
+                        columnSpacing: 15,
                         headingTextStyle: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18.0,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../generated/l10n.dart';
@@ -26,7 +27,7 @@ class UpdateCartView extends StatelessWidget {
                     height: 30,
                   ),
                   Text(
-                    '${S.of(context).Edit_Carts} $index',
+                    '${"Edit_Carts".tr(context)} ${index! + 1}',
                     style: TextStyle(
                         fontSize: 30,
                         color: kPrimaryColor,

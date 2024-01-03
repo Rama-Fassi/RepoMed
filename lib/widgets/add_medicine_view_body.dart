@@ -3,6 +3,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/widgets/custom_text_form_field.dart';
 import 'package:repomed/widgets/textFiledPickedDate.dart';
 import 'dart:typed_data';
@@ -44,6 +45,54 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
   String? form;
 
   String? details;
+  void _showBackDialog() {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Are you sure?'),
+          content: const Text(
+            'Are you sure from medicine details?',
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Yes'),
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  BlocProvider.of<AllApiCubit>(context).addMedicine(
+                    context: context,
+                    scientificName: scientificName!,
+                    tradeName: tradeName!,
+                    companyName: companyName!,
+                    categoriesName: categoriesName!,
+                    quantity: quantity!,
+                    expirationAt: expirationAt!,
+                    price: price!,
+                    form: form!,
+                    details: details!,
+                    photo: _webImage,
+                  );
+                  Navigator.pop(context);
+                } else {}
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   GlobalKey<FormState> formKey = GlobalKey();
   @override
@@ -56,7 +105,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
           children: [
             kSizedBox,
             Text(
-              S.of(context).Enter_The_Medicine_Details,
+              "Enter_The_Medicine_Details".tr(context),
               style: TextStyle(
                   fontSize: 25,
                   color: kLogoColor1,
@@ -76,32 +125,32 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                         onChanged: (value) {
                           scientificName = value;
                         },
-                        labelText: S.of(context).Scientific_Name,
+                        labelText: "Scientific_Name".tr(context),
                       ),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             tradeName = value;
                           },
-                          labelText: S.of(context).Trade_Name),
+                          labelText: "Trade_Name".tr(context)),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             categoriesName = value;
                           },
-                          labelText: S.of(context).Medicine_Category),
+                          labelText: "Medicine_Category".tr(context)),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             companyName = value;
                           },
-                          labelText: S.of(context).The_Manufacture_Company),
+                          labelText: "The_Manufacture_Company".tr(context)),
                       kSizedBox,
                       CustomTextFormField(
                         onChanged: (value) {
                           quantity = value;
                         },
-                        labelText: S.of(context).Quantity,
+                        labelText: "Quantity".tr(context),
                         inputType: TextInputType.number,
                       ),
                       kSizedBox,
@@ -110,7 +159,7 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                           onChanged: (value) {
                             expirationAt = value;
                           },
-                          labelText: S.of(context).expiration_time),
+                          labelText: "expiration_time".tr(context)),
                       kSizedBox,
                     ],
                   ),
@@ -127,19 +176,19 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
                           onChanged: (value) {
                             price = value;
                           },
-                          labelText: S.of(context).The_Price),
+                          labelText: "The_Price".tr(context)),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             form = value;
                           },
-                          labelText: S.of(context).Form),
+                          labelText: "Form".tr(context)),
                       kSizedBox,
                       CustomTextFormField(
                           onChanged: (value) {
                             details = value;
                           },
-                          labelText: S.of(context).Details),
+                          labelText: "Details".tr(context)),
                       kSizedBox,
                       GestureDetector(
                         onTap: () {
@@ -178,23 +227,10 @@ class _AddMedicineViewBodyState extends State<AddMedicineViewBody> {
             Center(
               child: CustomButton(
                 onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    BlocProvider.of<AllApiCubit>(context).addMedicine(
-                      context: context,
-                      scientificName: scientificName!,
-                      tradeName: tradeName!,
-                      companyName: companyName!,
-                      categoriesName: categoriesName!,
-                      quantity: quantity!,
-                      expirationAt: expirationAt!,
-                      price: price!,
-                      form: form!,
-                      details: details!,
-                      photo: _webImage!,
-                    );
-                  } else {}
+                  _showBackDialog();
+                  TextEditingController().clear();
                 },
-                text: S.of(context).Add_Medicine,
+                text: "Add_Medicine".tr(context),
                 width: 200,
                 height: 60,
                 borderRadius: 15,

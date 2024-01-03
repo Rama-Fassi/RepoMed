@@ -3,32 +3,20 @@ import 'dart:js_interop';
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:repomed/constants.dart';
-import 'package:repomed/widgets/custom_button.dart';
 import 'package:repomed/widgets/custom_slide.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
-import '../generated/l10n.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/add_medicine_view_body.dart';
-import '../widgets/custom_Text_Field.dart';
-import '../widgets/textFiledPickedDate.dart';
+import 'package:repomed/app_localizations.dart';
 
 class AddMedicineView extends StatefulWidget {
-  const AddMedicineView({Key? key}) : super(key: key);
+  AddMedicineView({Key? key}) : super(key: key);
   static String id = 'Add Medicine';
   @override
   State<AddMedicineView> createState() => _AddMedicineViewState();
 }
 
 class _AddMedicineViewState extends State<AddMedicineView> {
-  void _showMedicineAddedSnackBar(BuildContext context) {
-    final snackBar = SnackBar(
-      content: Text(S.of(context).Medicine_Added_Successfully),
-    );
-
-    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-  }
-
   bool isLoading = false;
   @override
   Widget build(BuildContext context) {
@@ -37,7 +25,7 @@ class _AddMedicineViewState extends State<AddMedicineView> {
         if (state is AddMedicineLoading) {
           isLoading = true;
         } else if (state is AddMedicineSuccess) {
-          _showMedicineAddedSnackBar(context);
+          showSnakbar(context, "Medicine_Added_Successfully".tr(context));
           isLoading = false;
         } else if (state is AddMedicineFailure) {
           showSnakbar(context, state.errMessage);

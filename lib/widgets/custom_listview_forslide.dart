@@ -1,17 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/add_medicine_view.dart';
+import 'package:repomed/Views/all_carts_view.dart';
 import 'package:repomed/Views/all_medicine_view.dart';
+import 'package:repomed/Views/home_view.dart';
 import 'package:repomed/Views/start_page.dart';
+import 'package:repomed/app_localizations.dart';
+import 'package:repomed/widgets/check_language.dart';
 import 'package:repomed/widgets/custom_slide.dart';
 
 import '../cubits/auth_cubit/auth_cubit.dart';
 import '../generated/l10n.dart';
 
-class SlideListView extends StatelessWidget {
+class SlideListView extends StatefulWidget {
   const SlideListView({
     super.key,
   });
+
+  @override
+  State<SlideListView> createState() => _SlideListViewState();
+}
+
+class _SlideListViewState extends State<SlideListView> {
+  void _showBackDialog() {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Are you sure?'),
+          content: const Text(
+            'Are you sure you want to log out?',
+          ),
+          actions: <Widget>[
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('No'),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            TextButton(
+              style: TextButton.styleFrom(
+                textStyle: Theme.of(context).textTheme.labelLarge,
+              ),
+              child: const Text('Yes'),
+              onPressed: () {
+                BlocProvider.of<AuthCubit>(context).logOut(context);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +68,7 @@ class SlideListView extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(right: 12),
             child: Text(
-              S.of(context).RepoMed,
+              "RepoMed".tr(context),
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 30,
@@ -43,7 +86,7 @@ class SlideListView extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            S.of(context).Home,
+            "Home".tr(context),
             style: TextStyle(
               color: Colors.white,
             ),
@@ -56,7 +99,7 @@ class SlideListView extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            S.of(context).add_Medicine,
+            "add_Medicine".tr(context),
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
@@ -70,7 +113,7 @@ class SlideListView extends StatelessWidget {
             color: Colors.white,
           ),
           title: Text(
-            S.of(context).All_Medicines,
+            "All_Medicines".tr(context),
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
@@ -80,28 +123,46 @@ class SlideListView extends StatelessWidget {
         SizedBox(height: 15),
         ListTile(
           leading: Icon(
-            Icons.logout,
+            Icons.add_shopping_cart_outlined,
             color: Colors.white,
           ),
           title: Text(
-            S.of(context).Log_out,
+            "All_Carts".tr(context),
             style: TextStyle(color: Colors.white),
           ),
           onTap: () {
-            BlocProvider.of<AuthCubit>(context).logOut(context);
+            Navigator.pushNamed(context, AllCartsView.id);
           },
         ),
         SizedBox(height: 15),
         ListTile(
           leading: Icon(
-            Icons.settings,
+            Language.isEnglish(context)
+                ? Icons.arrow_circle_left_rounded
+                : Icons.arrow_circle_right_rounded,
             color: Colors.white,
           ),
           title: Text(
-            S.of(context).Settings,
+            "Start".tr(context),
             style: TextStyle(color: Colors.white),
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.pushNamed(context, HomeView.id);
+          },
+        ),
+        SizedBox(height: 15),
+        ListTile(
+          leading: Icon(
+            Icons.logout,
+            color: Colors.white,
+          ),
+          title: Text(
+            "Log_out".tr(context),
+            style: TextStyle(color: Colors.white),
+          ),
+          onTap: () {
+            _showBackDialog();
+          },
         ),
       ],
     );

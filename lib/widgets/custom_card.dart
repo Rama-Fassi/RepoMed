@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/constants.dart';
+import 'package:repomed/widgets/check_language.dart';
 import '../Views/medicine_details_view.dart';
 import '../generated/l10n.dart';
 
@@ -12,6 +14,7 @@ class CustomCard extends StatelessWidget {
     this.photo,
     this.id,
     this.medicineQuantity,
+    required this.onTap,
   }) : super(key: key);
   final String Name;
   final String? medicinePrice;
@@ -19,6 +22,7 @@ class CustomCard extends StatelessWidget {
 
   final dynamic? photo;
   final dynamic? id;
+  final void Function() onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,9 @@ class CustomCard extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: Language.isEnglish(context)
+                  ? CrossAxisAlignment.start
+                  : CrossAxisAlignment.end,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Center(
@@ -76,14 +82,7 @@ class CustomCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  MedicineDetailsView(index: id)),
-                        );
-                      },
+                      onTap: onTap,
                       child: Container(
                         width: 60,
                         height: 25,
@@ -93,7 +92,7 @@ class CustomCard extends StatelessWidget {
                         ),
                         child: Center(
                           child: Text(
-                            S.of(context).Details1,
+                            "Details1".tr(context),
                             style: TextStyle(color: Colors.white),
                           ),
                         ),

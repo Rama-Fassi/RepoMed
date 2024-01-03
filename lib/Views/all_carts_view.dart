@@ -2,6 +2,7 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/update_cart_view.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../generated/l10n.dart';
@@ -66,7 +67,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                               // Left Arrow Button
                               IconButton(
                                 icon: Icon(
-                                  Language.isEnglish()
+                                  Language.isEnglish(context)
                                       ? Icons.keyboard_arrow_left
                                       : Icons.keyboard_arrow_right,
                                   size: 50,
@@ -77,14 +78,14 @@ class _AllCartsViewState extends State<AllCartsView> {
                                 },
                               ),
                               Text(
-                                S.of(context).All_Carts_details,
+                                "All_Carts_details".tr(context),
                                 style: TextStyle(
                                     fontSize: 25, color: kPrimaryColor),
                               ),
                               // Right Arrow Button
                               IconButton(
                                 icon: Icon(
-                                  Language.isEnglish()
+                                  Language.isEnglish(context)
                                       ? Icons.keyboard_arrow_right
                                       : Icons.keyboard_arrow_left,
                                   size: 50,
@@ -135,7 +136,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                                             width: 2,
                                           ))),
                                           child: Text(
-                                              '${S.of(context).Cart} ${cubit.cartModel?.data?[index].id}',
+                                              '${"Cart".tr(context)} ${cubit.cartModel?.data?[index].id}',
                                               style: const TextStyle(
                                                   color: kPrimaryColor,
                                                   fontWeight: FontWeight.bold,
@@ -157,7 +158,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                                                 ),
                                                 child: Center(
                                                     child: Text(
-                                                  '${S.of(context).User_id}: ${cubit.cartModel?.data?[index].userId} ',
+                                                  '${"User_id".tr(context)}: ${cubit.cartModel?.data?[index].userId} ',
                                                   style: const TextStyle(
                                                       color: kPrimaryColor,
                                                       fontSize: 20),
@@ -176,7 +177,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                                                 ),
                                                 child: Center(
                                                     child: Text(
-                                                  '${S.of(context).Status}: ${cubit.cartModel?.data?[index].status} ',
+                                                  '${"Status".tr(context)}: ${cubit.cartModel?.data?[index].status} ',
                                                   style: const TextStyle(
                                                       color: kPrimaryColor,
                                                       fontSize: 20),
@@ -195,7 +196,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                                                 ),
                                                 child: Center(
                                                     child: Text(
-                                                  '${S.of(context).Paid_Status}: ${cubit.cartModel?.data?[index].paidStatus}',
+                                                  '${"Paid_Status".tr(context)}: ${cubit.cartModel?.data?[index].paidStatus}',
                                                   style: const TextStyle(
                                                       color: kPrimaryColor,
                                                       fontSize: 20),
@@ -214,7 +215,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                                                 ),
                                                 child: Center(
                                                     child: Text(
-                                                  '${S.of(context).Created_at}: ${cubit.cartModel?.data?[index].createdAt}',
+                                                  '${"Created_at".tr(context)}: ${cubit.cartModel?.data?[index].createdAt}',
                                                   style: const TextStyle(
                                                       color: kPrimaryColor,
                                                       fontSize: 20),
@@ -232,12 +233,13 @@ class _AllCartsViewState extends State<AllCartsView> {
                                                       MaterialPageRoute(
                                                           builder: (context) {
                                                     return UpdateCartView(
-                                                      index: cubit.cartModel
-                                                          ?.data?[index].id,
+                                                      index: index,
+                                                      // cubit.cartModel
+                                                      //     ?.data?[index].id,
                                                     );
                                                   }));
                                                 },
-                                                text: S.of(context).Edit,
+                                                text: "Edit".tr(context),
                                                 width: 100,
                                                 borderRadius: 8,
                                                 padding: 8,
@@ -255,7 +257,7 @@ class _AllCartsViewState extends State<AllCartsView> {
                                                               ?.data?[index]
                                                               .id);
                                                 },
-                                                text: S.of(context).details3,
+                                                text: "details3".tr(context),
                                                 width: 100,
                                                 borderRadius: 8,
                                                 padding: 8,

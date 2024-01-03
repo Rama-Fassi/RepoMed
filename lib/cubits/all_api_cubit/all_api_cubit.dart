@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:repomed/models/cart_model.dart';
 import 'package:repomed/models/order_model.dart';
+import 'package:repomed/models/sales_report_model.dart';
 import 'package:repomed/models/show_cart.dart';
 import '../../helper/api.dart';
 import '../../models/add_category_model.dart';
@@ -14,10 +15,13 @@ import '../../models/category_model.dart';
 import '../../models/login_response.dart';
 import '../../models/medicine_model.dart';
 import '../../models/update_cart_model.dart';
+import '../../models/users_report.dart';
 import '../auth_cubit/auth_cubit.dart';
 part 'all_api_status.dart';
 
 class AllApiCubit extends Cubit<AllApiState> {
+  String baseUrl = 'http://192.168.42.66:8000/api';
+
   AllApiCubit() : super(AllApiInitial());
 
   static AllApiCubit get(context) => BlocProvider.of(context);
@@ -38,7 +42,7 @@ class AllApiCubit extends Cubit<AllApiState> {
   Future<List<Data>?> getAllCategory(context) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/WareHouse/category',
+      url: '$baseUrl/WareHouse/category',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -69,7 +73,7 @@ class AllApiCubit extends Cubit<AllApiState> {
     required String categoryName,
   }) async {
     Map<String, dynamic> data = await Api().post(
-      url: 'http://127.0.0.1:8000/api/WareHouse/category',
+      url: '$baseUrl/WareHouse/category',
       body: {
         'name': categoryName,
       },
@@ -95,7 +99,7 @@ class AllApiCubit extends Cubit<AllApiState> {
   Future<Map<String, dynamic>?> getMedicine(context, {required int id}) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/WareHouse/category/$id',
+      url: '$baseUrl/WareHouse/category/$id',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -122,7 +126,7 @@ class AllApiCubit extends Cubit<AllApiState> {
   Future<List<AllMedicineData>?> getAllMedicine(context) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/Pharmacy/medicines',
+      url: '$baseUrl/Pharmacy/medicines',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -148,7 +152,7 @@ class AllApiCubit extends Cubit<AllApiState> {
   Future<List<AllMedicineData>?> getAllMedicineDetails(context) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/Pharmacy/medicines',
+      url: '$baseUrl/Pharmacy/medicines',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -206,7 +210,7 @@ class AllApiCubit extends Cubit<AllApiState> {
     Uint8List? photo,
   }) async {
     Map<String, dynamic> data = await Api().postWithFile(
-        url: 'http://127.0.0.1:8000/api/WareHouse/medicines',
+        url: '$baseUrl/WareHouse/medicines',
         jsonData: {
           'scientific_name': scientificName,
           'trade_name': tradeName,
@@ -240,7 +244,7 @@ class AllApiCubit extends Cubit<AllApiState> {
   Future<List<AllMedicineData>?> getAllCarts(context) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/WareHouse/carts',
+      url: '$baseUrl/WareHouse/carts',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -265,7 +269,7 @@ class AllApiCubit extends Cubit<AllApiState> {
       {required int? id}) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/WareHouse/cart/$id',
+      url: '$baseUrl/WareHouse/cart/$id',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -289,7 +293,7 @@ class AllApiCubit extends Cubit<AllApiState> {
   Future<List<AllMedicineData>?> getAllOrders(context) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/WareHouse/order/index/',
+      url: '$baseUrl/WareHouse/order/index/',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {
@@ -325,10 +329,57 @@ class AllApiCubit extends Cubit<AllApiState> {
       String? paid_status,
       required int id}) async {
     Map<String, dynamic> data = await Api().put(
-      url: 'http://127.0.0.1:8000/api/WareHouse/cart/$id',
+      url: '$baseUrl/WareHouse/cart/$id',
       body: {"paid_status": paid_status, "status": status},
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     );
     return UpdateCartModel.fromJson(data);
+  }
+
+  /// All Sales Report
+  allSalesReport(context) async {
+    emit(AllSalesReportLoading());
+    try {
+      await getSalesReports(context);
+      emit(AllSalesReportSuccess());
+    } catch (e) {
+      emit(AllSalesReportFailure(e.toString()));
+    }
+  }
+
+  SalesReportsModel? salesReportModel;
+
+  Future<List<SalesReportData>?> getSalesReports(context) async {
+    await Api()
+        .get(
+      url: '$baseUrl/WareHouse/SalesReport',
+      token: AuthCubit.get(context).loginResponseModel!.data!.token,
+    )
+        .then((value) {
+      salesReportModel = SalesReportsModel.fromJson(value);
+    });
+  }
+
+  /// All Users Report
+  allUsersReport(context) async {
+    emit(AllUsersReportLoading());
+    try {
+      await getUsersReports(context);
+      emit(AllUsersReportSuccess());
+    } catch (e) {
+      emit(AllUsersReportFailure(e.toString()));
+    }
+  }
+
+  UsersReportsModel? usersReportModel;
+  Future<List<SalesReportData>?> getUsersReports(context) async {
+    await Api()
+        .get(
+      url: '$baseUrl/WareHouse/UsersReport',
+      token: AuthCubit.get(context).loginResponseModel!.data!.token,
+    )
+        .then((value) {
+      usersReportModel = UsersReportsModel.fromJson(value);
+    });
   }
 }

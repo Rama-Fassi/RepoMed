@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:repomed/cubits/all_api_cubit/all_api_cubit.dart';
+import '../Views/medicine_details_view.dart';
 import 'custom_card.dart';
 
 class GridViewCard extends StatelessWidget {
@@ -25,6 +26,13 @@ class GridViewCard extends StatelessWidget {
           medicineQuantity: '${cubit.allMedicineModel?.data?[index].quantity}',
           // photo: '${cubit.allMedicineModel?.data?[index].photo}',
           id: index,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MedicineDetailsView(index: index)),
+            );
+          },
         );
       },
     );

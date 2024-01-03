@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../Views/medicine_details_view.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import 'category_card.dart';
 import 'custom_card.dart';
@@ -52,6 +53,13 @@ class SearchAllCategories extends SearchDelegate {
           medicineQuantity: '${filter?[index].quantity}',
           // photo: '${cubit.allMedicineModel?.data?[index].photo}',
           id: index,
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => MedicineDetailsView(index: index)),
+            );
+          },
         );
       },
     );

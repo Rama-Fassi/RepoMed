@@ -103,3 +103,21 @@ final class UpdateCartFailure extends AllApiState {
   final String errMessage;
   UpdateCartFailure(this.errMessage);
 }
+
+final class AllSalesReportLoading extends AllApiState {}
+
+final class AllSalesReportSuccess extends AllApiState {}
+
+final class AllSalesReportFailure extends AllApiState {
+  late final String errMessage;
+  AllSalesReportFailure(this.errMessage);
+}
+
+final class AllUsersReportLoading extends AllApiState {}
+
+final class AllUsersReportSuccess extends AllApiState {}
+
+final class AllUsersReportFailure extends AllApiState {
+  late final String errMessage;
+  AllUsersReportFailure(this.errMessage);
+}

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../generated/l10n.dart';
@@ -30,7 +31,7 @@ class OrdersView extends StatelessWidget {
                       border: Border(
                           bottom: BorderSide(width: 2, color: kPrimaryColor))),
                   child: Text(
-                    S.of(context).All_Orders,
+                    "All_Orders".tr(context),
                     style: TextStyle(
                       color: kPrimaryColor,
                       fontWeight: FontWeight.bold,

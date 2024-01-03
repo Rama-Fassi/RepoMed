@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:repomed/app_localizations.dart';
 import 'package:repomed/constants.dart';
 import '../Views/medicine_details_view.dart';
 import '../generated/l10n.dart';
@@ -62,7 +63,7 @@ class CustomOrderCard extends StatelessWidget {
                   flex: 2,
                   child: Text(
                     // medicineName.substring(0, 5),
-                    '${S.of(context).Medicine}:${medicineName}',
+                    '${"Medicine".tr(context)}:${medicineName}',
                     style: TextStyle(
                       color: kPrimaryColor,
                       fontWeight: FontWeight.bold,
@@ -74,7 +75,7 @@ class CustomOrderCard extends StatelessWidget {
                   flex: 2,
                   child: Text(
                     // medicineName.substring(0, 5),
-                    '${S.of(context).Quantity}:${quantity}',
+                    '${"Quantity".tr(context)}:${quantity}',
                     style: TextStyle(
                       color: kPrimaryColor,
                       fontWeight: FontWeight.bold,
@@ -89,7 +90,7 @@ class CustomOrderCard extends StatelessWidget {
                     children: [
                       Text(
                         // medicineName.substring(0, 5),
-                        '${S.of(context).Cart_id}:${cart_id}',
+                        '${"Cart_id".tr(context)}:${cart_id}',
                         style: TextStyle(
                           color: kPrimaryColor,
                           fontWeight: FontWeight.bold,
@@ -98,7 +99,7 @@ class CustomOrderCard extends StatelessWidget {
                       ),
                       Text(
                         // medicineName.substring(0, 5),
-                        '${S.of(context).Order_id}:${id}',
+                        '${"Order_id".tr(context)}:${id}',
                         style: TextStyle(
                           color: kPrimaryColor,
                           fontWeight: FontWeight.bold,

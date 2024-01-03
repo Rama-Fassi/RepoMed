@@ -1,6 +1,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/Views/category_medicine_details_view.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../helper/show_snack_bar.dart';
 import '../widgets/custom_card.dart';
@@ -13,7 +14,6 @@ class CategoryMedicines extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AllApiCubit cubit = AllApiCubit.get(context);
-
     return Scaffold(
       body: Row(
         children: [
@@ -34,6 +34,14 @@ class CategoryMedicines extends StatelessWidget {
                       '${cubit.categorymedicinesModel?.data?[index].scientificName}',
                   medicineQuantity:
                       '${cubit.categorymedicinesModel?.data?[index].quantity}',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              CategoryMedicineDetailsView(index: index)),
+                    );
+                  },
                 );
               },
             ),

@@ -1,1 +1,73 @@
-{"hello_msg": " مرحباً"}
+{
+   "Manage_Your": "تحكم في مستودعك من خلال",
+   "Get_Started" : "هيا بنا",
+   "add_Medicine" : "إضافة دواء",
+   "All_Medicines" : "جميع الأدوية",
+   "Categories" : "تصنيفات الأدوية",
+   "All_Carts" : "الطلبيات",
+   "Reports" : "التقارير",
+   "Medicines_details" : "تفاصيل الأدوية",
+    "RepoMed" : "دوائي",
+   "Home" : "الصفحة الرئيسية",
+   "Log_out" : "تسجيل خروج",
+   "Settings" : "الاعدادات",
+   "Enter_The_Medicine_Details": "ادخل تفاصيل الدواء",
+   "Scientific_Name" : "الاسم العلمي",
+   "Trade_Name" : "الاسم التجاري",
+   "Medicine_Category" : "تصنيف الدواء",
+   "The_Manufacture_Company" : "الشركة المصنعة",
+   "Quantity" : "الكمية",
+   "expiration_time" : "تاريخ انتهاء الصلاحية",
+   "The_Price" : "السعر",
+   "Form" : "نوع المادة",
+   "Details" : "مزيد من تفاصيل",
+   "Add_Medicine" : "إضافة الدواء",
+   "Details1" : "تفاصيل",
+   "Add_New_Category" : "إضافة تصنيف جديد",
+   "Add" : "إضافة",
+   "All_Carts_details" : "تفاصيل جميع الطلبات",
+   "Cart" : "الطلب",
+   "User_id" : "رقم المستخدم",
+   "Status" : "حالة الطلب",
+   "Paid_Status" : "حالة الدفع",
+   "Created_at" : "تاريخ الإنشاء",
+   "Edit" : "تعديل",
+   "details3" : "تفاصيل",
+   "All_Orders" : "محتوى الطلبية",
+   "Order_id" : "رقم الدواء",
+   "Cart_id" : "رقم الطلبية",
+   "Medicine" : "اسم الدواء",
+   "Edit_Carts" : "تعديل الطلبية",
+   "Cart_Update_Successfully" : "تم تعديل الطلبية بنجاح",
+   "Medicine_Added_Successfully" : "تم إضافة الدواء بنجاح",
+   "Category_Added_Successfully" : "تم إضافة التصنيف بنجاح",
+   "Login": "تسجيل الدخول",
+   "password" : "كلمة المرور",
+   "Email" : "البريد الالكتروني",
+   "Medicine_Details" : "تفاصيل الدواء:",
+   "description": "الوصف",
+   "Delete" : "حذف",
+   "New" : "طلب جديد",
+   "Preparing" : "قيد التحضير",
+   "Delivering": "جاري التوصيل",
+   "Received" : "تم الاستلام",
+   "Paid": "تم الدفع",
+   "Un_Paid" : "غير مدفوع",
+   "Medicines_Report" : "الأدوية الأكثر مبيعاً",
+   "Medicine_Name" : "اسم الدواء",
+   "Total_Sales": "المبيعات الكلية",
+   "Users_Report" : "المستخدمين الأكثر طلباً",
+   "User_Name" : "اسم المستخدم",
+   "Start": "ابدأ"
+
+
+
+
+
+
+
+
+
+
+
+}

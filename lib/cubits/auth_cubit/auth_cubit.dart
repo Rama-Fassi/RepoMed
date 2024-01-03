@@ -7,6 +7,8 @@ import '../../models/logout_model.dart';
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  String baseUrl = 'http://192.168.42.66:8000/api';
+
   AuthCubit() : super(AuthInitial());
   static AuthCubit get(context) => BlocProvider.of(context);
 
@@ -29,7 +31,7 @@ class AuthCubit extends Cubit<AuthState> {
     required String password,
   }) async {
     Map<String, dynamic> data = await Api().post(
-      url: 'http://127.0.0.1:8000/api/WareHouse/login',
+      url: '$baseUrl/WareHouse/login',
       body: {
         'email': email,
         'password': password,
@@ -56,7 +58,7 @@ class AuthCubit extends Cubit<AuthState> {
   Future<List<dynamic>?> getLogout(context) async {
     await Api()
         .get(
-      url: 'http://127.0.0.1:8000/api/Pharmacy/logout',
+      url: '$baseUrl/Pharmacy/logout',
       token: AuthCubit.get(context).loginResponseModel!.data!.token,
     )
         .then((value) {

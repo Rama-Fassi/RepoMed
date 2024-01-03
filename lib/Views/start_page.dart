@@ -2,8 +2,10 @@ import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:repomed/Views/categories_view.dart';
-import 'package:repomed/Views/all_medicine_details_view.dart';
+import 'package:repomed/Views/reports_view.dart';
+import 'package:repomed/Views/table_medicine_details_view.dart';
 import 'package:repomed/Views/all_carts_view.dart';
+import 'package:repomed/app_localizations.dart';
 import '../constants.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../generated/l10n.dart';
@@ -59,6 +61,22 @@ class _GetStartedState extends State<GetStarted> {
         } else if (state is AllCartsFailure) {
           showSnakbar(context, state.errMessage);
           isLoading = false;
+        } else if (state is AllSalesReportLoading) {
+          isLoading = true;
+        } else if (state is AllSalesReportSuccess) {
+          Navigator.pushNamed(context, AllReportsView.id);
+          isLoading = false;
+        } else if (state is AllSalesReportFailure) {
+          showSnakbar(context, state.errMessage);
+          isLoading = false;
+        } else if (state is AllUsersReportLoading) {
+          isLoading = true;
+        } else if (state is AllUsersReportSuccess) {
+          Navigator.pushNamed(context, AllReportsView.id);
+          isLoading = false;
+        } else if (state is AllUsersReportFailure) {
+          showSnakbar(context, state.errMessage);
+          isLoading = false;
         }
       },
       builder: (context, state) {
@@ -84,7 +102,7 @@ class _GetStartedState extends State<GetStarted> {
                               Expanded(
                                 child: StartPageContainer(
                                   icon: Icons.add_shopping_cart,
-                                  text: S.of(context).add_Medicine,
+                                  text: "add_Medicine".tr(context),
                                   ontap: () {
                                     Navigator.pushNamed(
                                         context, AddMedicineView.id);
@@ -96,7 +114,7 @@ class _GetStartedState extends State<GetStarted> {
                               ),
                               Expanded(
                                 child: StartPageContainer(
-                                  text: S.of(context).All_Medicines,
+                                  text: "All_Medicines".tr(context),
                                   icon: Icons.medical_information,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)
@@ -109,7 +127,7 @@ class _GetStartedState extends State<GetStarted> {
                               ),
                               Expanded(
                                 child: StartPageContainer(
-                                  text: S.of(context).Categories,
+                                  text: "Categories".tr(context),
                                   icon: Icons.inventory_outlined,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)
@@ -126,7 +144,7 @@ class _GetStartedState extends State<GetStarted> {
                             children: [
                               Expanded(
                                 child: StartPageContainer(
-                                  text: S.of(context).All_Carts,
+                                  text: "All_Carts".tr(context),
                                   icon: Icons.shopping_cart_outlined,
                                   // icon: Icons.inventory_outlined,
                                   ontap: () {
@@ -141,10 +159,13 @@ class _GetStartedState extends State<GetStarted> {
                               Expanded(
                                 child: StartPageContainer(
                                   icon: Icons.summarize_outlined,
-                                  text: S.of(context).Reports,
+                                  text: "Reports".tr(context),
                                   ontap: () {
-                                    Navigator.pushNamed(
-                                        context, AddMedicineView.id);
+                                    BlocProvider.of<AllApiCubit>(context)
+                                        .allUsersReport(context);
+
+                                    BlocProvider.of<AllApiCubit>(context)
+                                        .allSalesReport(context);
                                   },
                                 ),
                               ),
@@ -153,7 +174,7 @@ class _GetStartedState extends State<GetStarted> {
                               ),
                               Expanded(
                                 child: StartPageContainer(
-                                  text: S.of(context).Medicines_details,
+                                  text: "Medicines_details".tr(context),
                                   icon: Icons.local_pharmacy_outlined,
                                   ontap: () {
                                     BlocProvider.of<AllApiCubit>(context)

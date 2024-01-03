@@ -41,16 +41,16 @@ class CustomSlide extends StatelessWidget {
               width: 100,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
-                  topRight: Language.isEnglish()
+                  topRight: Language.isEnglish(context)
                       ? Radius.circular(30)
                       : Radius.circular(0),
-                  topLeft: Language.isArabic()
+                  topLeft: Language.isArabic(context)
                       ? Radius.circular(30)
                       : Radius.circular(0),
-                  bottomRight: Language.isEnglish()
+                  bottomRight: Language.isEnglish(context)
                       ? Radius.circular(30)
                       : Radius.circular(0),
-                  bottomLeft: Language.isArabic()
+                  bottomLeft: Language.isArabic(context)
                       ? Radius.circular(30)
                       : Radius.circular(0),
                 ),
