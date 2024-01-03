@@ -1,6 +1,7 @@
 import 'package:blurry_modal_progress_hud/blurry_modal_progress_hud.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:repomed/app_localizations.dart';
 import '../cubits/all_api_cubit/all_api_cubit.dart';
 import '../helper/show_snack_bar.dart';
 import '../models/all_medicine_model.dart';
@@ -56,7 +57,7 @@ class _AllMedicineDetailsState extends State<AllMedicineDetails> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                'All Medicine Details',
+                'All Medicine Details'.tr(context),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
@@ -83,39 +84,39 @@ class _AllMedicineDetailsState extends State<AllMedicineDetails> {
                         ),
                         columns: [
                           DataColumn(
-                            label: Text('Medicine id'),
+                            label: Text('Medicine_id'),
                             tooltip: 'id',
                           ),
                           DataColumn(
-                            label: Text('Category'),
+                            label: Text('Medicine_Category'.tr(context)),
                             tooltip: 'The category of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('trade Name'),
+                            label: Text('Trade_Name'.tr(context)),
                             tooltip: 'The trade Name of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('scientific Name'),
+                            label: Text('Scientific_Name'.tr(context)),
                             tooltip: 'The scientific Name of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('Quantity'),
+                            label: Text('Quantity'.tr(context)),
                             tooltip: 'The quantity of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('Price'),
+                            label: Text('The_Price'.tr(context)),
                             tooltip: 'The price of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('Expiration date'),
+                            label: Text('expiration_time'.tr(context)),
                             tooltip: 'the Expiration date of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('form'),
+                            label: Text('Form'.tr(context)),
                             tooltip: 'The form of the Medicine',
                           ),
                           DataColumn(
-                            label: Text('description'),
+                            label: Text('description'.tr(context)),
                             tooltip: 'the description of the Medicine',
                           ),
                         ],

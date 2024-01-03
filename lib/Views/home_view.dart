@@ -29,7 +29,7 @@ class _HomeViewState extends State<HomeView> {
             appBar: AppBar(
               leading: BlocConsumer<LocaleCubit, ChangeLocaleState>(
                 listener: (context, state) {
-                  Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
                 },
                 builder: (context, state) {
                   return Padding(

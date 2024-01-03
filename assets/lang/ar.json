@@ -58,7 +58,9 @@
    "Total_Sales": "المبيعات الكلية",
    "Users_Report" : "المستخدمين الأكثر طلباً",
    "User_Name" : "اسم المستخدم",
-   "Start": "ابدأ"
+   "Start": "ابدأ",
+   "Medicine_id": "رقم الدواء",
+   "All_Medicine_Details" : "تفاصيل جميع الأدوية"
 
 
 

@@ -58,7 +58,10 @@
    "Total_Sales": "Total Sales",
    "Users_Report" : "Users Report",
    "User_Name" : "User Name",
-   "Start": "Start"
+   "Start": "Start",
+   "Medicine_id": "Medicine id",
+   "All_Medicine_Details" : "All Medicine Details"
+
 
 
 
